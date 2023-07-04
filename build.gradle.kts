@@ -54,6 +54,12 @@ dependencies {
 	// 스프링 웹 MVC
 	implementation("org.springframework.boot:spring-boot-starter-web")
 
+	// 스프링 웹 플럭스
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
+
+	// 코틀린 리액터
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
