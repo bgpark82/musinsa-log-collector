@@ -1,0 +1,3 @@
+package com.bgpark.logcollection.user_event.controller
+
+interface MessageProducer
