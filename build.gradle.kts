@@ -51,6 +51,9 @@ dependencies {
 	// 코루틴
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 
+	// 스프링 웹 MVC
+	implementation("org.springframework.boot:spring-boot-starter-web")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
