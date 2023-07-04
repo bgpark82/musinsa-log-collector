@@ -8,13 +8,13 @@ plugins {
 	// 스프링부트 플러그인
 	// @see https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/
 	// @see https://plugins.gradle.org/plugin/org.springframework.boot
-	id("org.springframework.boot") version "2.7.13"
+	id("org.springframework.boot")
 
 	// 스프링 의존성 관리 플러그인
 	// bom에 기본적으로 정의된 의존성 버전을 사용하여 생략가능
 	// @see https://docs.spring.io/dependency-management-plugin/docs/current-SNAPSHOT/reference/html/
 	// @see https://github.com/spring-gradle-plugins/dependency-management-plugin
-	 id("io.spring.dependency-management") version "1.0.15.RELEASE"
+	 id("io.spring.dependency-management")
 
 	// 자바 플러그인 (springboot 플러그인에 포함)
 	// @see https://docs.gradle.org/current/userguide/java_plugin.html
@@ -22,13 +22,13 @@ plugins {
 
 	// 코틀린 버전을 정의한 플러그인
 	// @see https://kotlinlang.org/docs/jvm-create-project-with-spring-boot.html#explore-the-project-gradle-build-file
-	kotlin("jvm") version "1.6.21"
+	kotlin("jvm")
 
 	// 코틀린 스프링 컴파일 플러그인
 	// open 수정자를 추가하기 위한 플러그인
 	// 스프링프레임워크나 AOP 라이브러리를 사용하기 위해서는 상속이 필요하지만, 코틀린 클래스는 final을 강요해 불편한다
 	// @see https://kotlinlang.org/docs/all-open-plugin.html
-	kotlin("plugin.spring") version "1.6.21"
+	kotlin("plugin.spring")
 }
 
 group = "com.bgpark"
@@ -53,9 +53,12 @@ dependencies {
 
 // 코틀린 컴파일러에 추가 아규먼트를 정의한 블록
 tasks.withType<KotlinCompile> {// KolinCompile 타입의 task를 선택
+	println("java version : ${JavaVersion.VERSION_17}")
+	println("springBootDependencyManagementVersion : ${project.properties.get("springBootDependencyManagementVersion")}")
+
 	kotlinOptions {
 		freeCompilerArgs += "-Xjsr305=strict" // JSR-305 주석 지원처리를 활성화
-		jvmTarget = "17" // 컴파일된 바이트 코드의 대상 JVM 옵션을 JVM 17 버전으로 설정
+		jvmTarget = JavaVersion.VERSION_17.toString() // 컴파일된 바이트 코드의 대상 JVM 옵션을 JVM 17 버전으로 설정
 	}
 }
 
