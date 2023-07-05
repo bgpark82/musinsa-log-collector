@@ -1,7 +1,5 @@
 package com.bgpark.logcollection.user_event.controller
 
-import com.bgpark.logcollection.user_event.dto.LogMessage
-
 interface MessageProducer {
 
     /**
@@ -9,5 +7,5 @@ interface MessageProducer {
      * @param topic 토픽
      * @param message 발행할 메세지
      */
-    suspend fun send(topic: String, message: LogMessage)
+    suspend fun send(topic: String, message: String)
 }
