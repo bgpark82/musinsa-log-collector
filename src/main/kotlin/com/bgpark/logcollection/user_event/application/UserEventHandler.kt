@@ -2,6 +2,9 @@ package com.bgpark.logcollection.user_event.application
 
 import com.bgpark.logcollection.user_event.controller.MessageProducer
 import com.bgpark.logcollection.user_event.dto.UserEvent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.*
 
@@ -11,8 +14,12 @@ class UserEventHandler(
 ) {
     suspend fun create(request: ServerRequest): ServerResponse {
         val userEvent = request.awaitBody<UserEvent>()
-        println("userEvent: $userEvent")
-        return ServerResponse.ok().json().bodyValueAndAwait(userEvent.uuid)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            messageProducer.send("TOPIC", userEvent.uuid)
+        }
+
+        return ServerResponse.ok().json().bodyValueAndAwait("done")
     }
 
     suspend fun createBulk(request: ServerRequest): ServerResponse {
