@@ -88,3 +88,7 @@ tasks.named<BootRun>("bootRun") {
 
 	systemProperty("spring.profiles.active", "prod")
 }
+
+tasks.jar {
+	archiveFileName.set("log-collector.jar")
+}
