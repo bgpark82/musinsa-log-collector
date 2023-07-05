@@ -1,0 +1,9 @@
+#
+POST http://localhost:8080/log/search-event
+Content-Type: application/json
+
+{
+  "data": {
+    "key": "value"
+  }
+}
