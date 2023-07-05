@@ -83,12 +83,15 @@ tasks.withType<Test> {
 //ext["spring.version"] = "2.7.3"
 
 tasks.named<BootRun>("bootRun") {
-	println("spring version: ${ext["spring.version"]}")
 	println("bootRun 실행!")
+	println("spring version: ${ext["spring.version"]}")
+	println("active profile : ${System.getProperty("spring.profiles.active")}")
 
-	systemProperty("spring.profiles.active", "prod")
+	// active 프로필을 지정하기 위해서는 아래 코드가 필요하다
+	systemProperty("spring.profiles.active", System.getProperty("spring.profiles.active"))
 }
 
 tasks.jar {
+	// 젠킨스에서 해당이름으로 배포 중
 	archiveFileName.set("log-collector.jar")
 }
