@@ -12,10 +12,10 @@ import org.springframework.web.reactive.function.server.coRouter
 
 
 @Configuration
-class UserEventRouter {
+class UserEventRouterConfig {
 
     @Bean
-    fun router(userEventHandler: UserEventHandler): RouterFunction<ServerResponse> {
+    fun userEventRouter(userEventHandler: UserEventHandler): RouterFunction<ServerResponse> {
 
         /**
          * coRouter : 라우팅을 정의한 함수
