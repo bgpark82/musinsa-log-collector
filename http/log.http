@@ -3,6 +3,8 @@ POST http://localhost:8080/log/user-event
 Content-Type: application/json
 
 {
-  "uuid": "hello"
+  "data": {
+    "key": "value"
+  }
 }
 
