@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 import org.springframework.boot.gradle.tasks.run.BootRun
 
 // plugins 블록만으로 apply 가능
@@ -51,8 +50,8 @@ dependencies {
 	// 코루틴
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 
-	// 스프링 웹 MVC
-	implementation("org.springframework.boot:spring-boot-starter-web")
+	// 스프링 웹 MVC - web은 톰캣 서버, webflux는 netty 서버 사용
+	// implementation("org.springframework.boot:spring-boot-starter-web")
 
 	// 스프링 웹 플럭스
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
