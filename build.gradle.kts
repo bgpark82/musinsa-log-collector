@@ -92,8 +92,19 @@ tasks.named<BootRun>("bootRun") {
 }
 
 tasks.jar {
-	// 젠킨스에서 해당이름으로 배포 중
-	archiveFileName.set("log-collector.jar")
+	// plain jar 생성 방지, plain jar는 외부 의존성을 제외한 파일
+	// https://velog.io/@chappse6/%EC%98%A4%EB%8A%98%EC%9D%98-%EC%98%A4%EB%A5%98-%EA%B8%B0%EB%B3%B8-manifest-%EC%86%8D%EC%84%B1%EC%9D%B4-%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4
+	enabled = false
+
+	copy {
+		from("./script/code-deploy/application_start.sh")
+		into("./build/libs")
+	}
+
+	copy {
+		from("./appspec.yml")
+		into("./build/libs")
+	}
 }
 
 tasks.bootJar {
