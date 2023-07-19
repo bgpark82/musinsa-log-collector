@@ -98,7 +98,7 @@ tasks.jar {
 
 	copy {
 		from("./script/code-deploy/application_start.sh")
-		into("./build/libs")
+		into("./build/libs/script/code-deploy")
 	}
 
 	copy {
