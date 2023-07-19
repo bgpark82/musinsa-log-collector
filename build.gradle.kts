@@ -97,7 +97,7 @@ tasks.jar {
 	enabled = false
 
 	copy {
-		from("./script/code-deploy/application_start.sh")
+		from("./script/code-deploy")
 		into("./build/libs/script/code-deploy")
 	}
 
