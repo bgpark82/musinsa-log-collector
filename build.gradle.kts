@@ -59,6 +59,8 @@ dependencies {
 	// 코틀린 리액터
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
