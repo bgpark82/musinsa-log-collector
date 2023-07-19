@@ -95,3 +95,21 @@ tasks.jar {
 	// 젠킨스에서 해당이름으로 배포 중
 	archiveFileName.set("log-collector.jar")
 }
+
+tasks.bootJar {
+	// 젠킨스에서 해당이름으로 배포 중
+	archiveFileName.set("log-collector.jar")
+}
+
+tasks.register<Tar>("tar") {
+	val src = "$buildDir/libs"
+	compression = Compression.GZIP
+
+	println("${project.name}.tar")
+
+	archiveFileName.set("${project.name}.tar")
+	destinationDirectory.set(buildDir)
+	from(src) {
+		include("**/*") // 압축할 파일 또는 디렉토리의 경로와 패턴을 지정하세요
+	}
+}
