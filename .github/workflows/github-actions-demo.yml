@@ -15,3 +15,12 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: install environment
+        run: |
+          sudo apt update
+          sudo apt install openjdk-17-jdk -y
+          sudo snap install --classic kotlin
+      - name: build
+        run: ./gradlew build
+      - name: tar
+        run: ./gradlew tar
