@@ -21,6 +21,6 @@ jobs:
           sudo apt install openjdk-17-jdk -y
           sudo snap install --classic kotlin
       - name: build
-        run: ./gradlew build
+        run: ./gradlew bootJar
       - name: tar
         run: ./gradlew tar
