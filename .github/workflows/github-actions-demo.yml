@@ -20,7 +20,11 @@ jobs:
           sudo apt update
           sudo apt install openjdk-17-jdk -y
           sudo snap install --classic kotlin
+
+      - name: test
+        run: ./gradlew test
       - name: build
         run: ./gradlew bootJar
       - name: tar
         run: ./gradlew tar
+ACTIONS_RUNNER_DEBUG: true # enable runner diagnostic logging
