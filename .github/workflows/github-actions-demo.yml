@@ -20,7 +20,8 @@ jobs:
           sudo apt update
           sudo apt install openjdk-17-jdk -y
           sudo snap install --classic kotlin
-
+      - name: clean
+        run: ./gradlew clean
       - name: test
         run: ./gradlew test
       - name: build
