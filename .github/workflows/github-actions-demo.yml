@@ -31,6 +31,10 @@ jobs:
           sudo ls -al /usr/lib/jvm
       - name: jdk 버전 변경
         run: sudo update-alternatives --set java /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
+      - name: jdk 환경변수 확인
+        run: | 
+          echo $JAVA_HOME
+          cat /etc/profile
       - name: jdk 환경변수 설정
         run: |
           echo $(dirname $(dirname $(readlink -f $(which java))))
