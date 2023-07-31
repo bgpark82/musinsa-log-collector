@@ -32,7 +32,10 @@ jobs:
           dirname $(readlink -f $(which java))
           dirname $(dirname $(readlink -f $(which java)))
       - name: JDK 17 설치
-        run: sudo apt install openjdk-17-jdk -y
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
       - name: Kolin 설치
         run: sudo snap install --classic kotlin
       - name: 현재 자바 버전 확인
