@@ -22,8 +22,8 @@ jobs:
           sudo snap install --classic kotlin
       - name: java version
         run: |
-          java --version
-          kotlin --version
+          java -version
+          kotlin -version
       - name: clean
         run: ./gradlew clean
       - name: test

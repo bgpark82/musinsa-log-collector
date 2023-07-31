@@ -109,6 +109,10 @@ tasks.jar {
 	}
 }
 
+tasks.test {
+	println("현재 자바 버전 : ${JavaVersion.current()}")
+}
+
 tasks.bootJar {
 	// 젠킨스에서 해당이름으로 배포 중
 	archiveFileName.set("log-collector.jar")
