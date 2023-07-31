@@ -60,4 +60,4 @@ jobs:
       # https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
       # https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-services-s3-commands.html
       - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 log-collection.tar s3://musinsa-server-build/log-collection-api/test/log.collection.tar
+        run: aws s3 cp --region ap-northeast-2 log-collection.tar s3://musinsa-server-build/log-collection-api/test/log-collection.tar
