@@ -16,6 +16,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
+      # 환경설정
       - name: ubuntu 업데이트
         run: sudo apt update
       - name: jdk 17 설치
@@ -25,14 +26,17 @@ jobs:
           java-version: '17'
       - name: kotlin 설치
         run: sudo snap install --classic kotlin
-
       - name: jdk 버전 확인
         run: |
           java -version
           kotlin -version
           readlink -f $(which java)
+
+      # 빌드
       - name: build
         run: ./gradlew build
+
+      # 압축
       - name: tar
         # run: ./gradlew tar
         run: |
@@ -46,11 +50,15 @@ jobs:
           path: /home/runner/work/musinsa-log-collector/musinsa-log-collector/build/reports
           retention-days: 1
 
-#      - name: Configure AWS credentials
-#        uses: aws-actions/configure-aws-credentials@v1
-#        with:
-#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#          aws-region: ${{ env.AWS_REGION }}
-#      - name: Upload to S3
-#        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+      # https://github.com/aws-actions/configure-aws-credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
+      # https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-services-s3-commands.html
+      - name: Upload to S3
+        run: aws s3 cp --region ${{ env.AWS_REGION }} log-collection.tar s3://${{ env.AWS_S3_DEPLOY }}/log.collection.tar
