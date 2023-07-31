@@ -16,58 +16,23 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-      - name: install environment
+      - name: ubuntu 업데이트
         run: sudo apt update
-
-      - name: 기존 자바 버전 확인
-        run: |
-          java -version
-          kotlin -version
-          readlink -f $(which java)
-          dirname $(readlink -f $(which java))
-          dirname $(dirname $(readlink -f $(which java)))
-      - name: jdk 설치 위치 파악
-        run: |
-          sudo ls -al /usr/lib/jvm
-      - name: jdk 버전 변경
-        run: sudo update-alternatives --set java /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
-      - name: jdk 환경변수 확인
-        run: | 
-          echo $JAVA_HOME
-          cat /etc/profile
-          cat ~/.bashrc
-          cat ~/.bash_profile
-#          sudo find / -type f -exec grep -H 'JAVA_HOME' {} \;
-
-      - name: jdk 환경변수 설정
-        run: |
-          echo $(dirname $(dirname $(readlink -f $(which java))))
-          sudo echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" > sudo /etc/profile
-          sudo echo "PATH=$PATH:$JAVA_HOME/bin" > sudo /etc/profile
-          sudo source /etc/profile
-          sudo echo $JAVA_HOME
-          sudo echo /etc/profile
-
-#      - name: JDK 17 설치
-#        uses: actions/setup-java@v3
-#        with:
-#          distribution: 'temurin' # See 'Supported distributions' for available options
-#          java-version: '17'
-      - name: Kolin 설치
+      - name: jdk 17 설치
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+      - name: kotlin 설치
         run: sudo snap install --classic kotlin
 
-      - name: 현재 자바 버전 확인
+      - name: 현재 jdk 버전 확인
         run: |
           java -version
           kotlin -version
           readlink -f $(which java)
           dirname $(readlink -f $(which java))
           dirname $(dirname $(readlink -f $(which java)))
-
-      - name: clean
-        run: ./gradlew clean
-      - name: test
-        run: ./gradlew test
       - name: build
         run: ./gradlew build
       - name: tar
