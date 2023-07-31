@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt update
       - name: 설치된 jdk 확인
-        run: apt list --installed | grep openjdk
+        run: sudo apt list --installed | grep openjdk
       - name: 기존 jdk 삭제
         run: |
           sudo apt remove openjdk*
