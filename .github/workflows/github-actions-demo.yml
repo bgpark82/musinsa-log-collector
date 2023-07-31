@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo ls -al /usr/lib/jvm
       - name: jdk 버전 변경
-        run: sudo update-alternatives --set java /usr/lib/jvm/temurin-11-jdk-amd64/bin/java
+        run: sudo update-alternatives --set java /usr/lib/jvm/temurin-17-jdk-amd64/bin/java
 
 #      - name: JDK 17 설치
 #        uses: actions/setup-java@v3
