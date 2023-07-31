@@ -24,8 +24,8 @@ jobs:
         run: ./gradlew clean
       - name: test
         run: ./gradlew test
-      - name: 테스트 실패시 artifact로 남기기 ${{failure}}
-        if: ${{failure()}}
+      - name: 테스트 실패시 artifact로 남기기
+        if: ${{ failure() }}
         uses: actions/upload-artifact@v2
         with:
           name: report_files
