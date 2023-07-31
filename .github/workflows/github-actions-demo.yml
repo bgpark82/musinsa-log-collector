@@ -47,9 +47,6 @@ jobs:
           dirname $(readlink -f $(which java))
           dirname $(dirname $(readlink -f $(which java)))
 
-      - name: jdk 버전 변경
-        run: update-alternatives --config java
-
       - name: clean
         run: ./gradlew clean
       - name: test
