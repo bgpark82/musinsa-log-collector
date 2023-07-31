@@ -37,7 +37,7 @@ jobs:
           cat /etc/profile
           cat ~/.bashrc
           cat ~/.bash_profile
-          sudo find / -type f -exec grep -H 'JAVA_HOME' {} \;
+#          sudo find / -type f -exec grep -H 'JAVA_HOME' {} \;
 
       - name: jdk 환경변수 설정
         run: |
