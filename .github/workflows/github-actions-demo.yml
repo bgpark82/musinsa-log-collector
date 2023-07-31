@@ -35,6 +35,10 @@ jobs:
         run: | 
           echo $JAVA_HOME
           cat /etc/profile
+          cat ~/.bashrc
+          cat ~/.bash_profile
+          sudo find / -type f -exec grep -H 'JAVA_HOME' {} \;
+
       - name: jdk 환경변수 설정
         run: |
           echo $(dirname $(dirname $(readlink -f $(which java))))
