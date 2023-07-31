@@ -19,6 +19,9 @@ jobs:
         run: |
           java -version
           kotlin -version
+          readlink -f $(which java)
+          dirname $(readlink -f $(which java))
+          dirname $(dirname $(readlink -f $(which java)))
       - name: install environment
         run: |
           sudo apt update
@@ -28,6 +31,9 @@ jobs:
         run: |
           java -version
           kotlin -version
+          readlink -f $(which java)
+          dirname $(readlink -f $(which java))
+          dirname $(dirname $(readlink -f $(which java)))
       - name: clean
         run: ./gradlew clean
       - name: test
