@@ -22,9 +22,8 @@ jobs:
           sudo snap install --classic kotlin
       - name: clean
         run: ./gradlew clean
-      - name: test
-        run: ./gradlew test
       - name: 테스트 실패시 artifact로 남기기
+        run: ./gradlew test
         if: ${{ failure() }}
         uses: actions/upload-artifact@v2
         with:
