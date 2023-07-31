@@ -15,12 +15,16 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: 기존 자바 버전 확인
+        run: |
+          java -version
+          kotlin -version
       - name: install environment
         run: |
           sudo apt update
           sudo apt install openjdk-17-jdk -y
           sudo snap install --classic kotlin
-      - name: java version
+      - name: 현재 자바 버전 확인
         run: |
           java -version
           kotlin -version
