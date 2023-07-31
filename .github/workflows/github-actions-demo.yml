@@ -19,11 +19,13 @@ jobs:
       - name: install environment
         run: |
           sudo apt update
+      - name: 설치된 jdk 확인
+        run: apt list --installed | grep openjdk
       - name: 기존 jdk 삭제
         run: |
-          sudo apt-get remove openjdk*
-          sudo apt-get autoremove --purge
-          sudo apt-get autoclean
+          sudo apt remove openjdk*
+          sudo apt autoremove --purge
+          sudo apt autoclean
       - name: 기존 자바 버전 확인
         run: |
           java -version
@@ -45,6 +47,9 @@ jobs:
           readlink -f $(which java)
           dirname $(readlink -f $(which java))
           dirname $(dirname $(readlink -f $(which java)))
+      - name: jdk 버전 변경
+        run: update-alternatives --config java
+
       - name: clean
         run: ./gradlew clean
       - name: test
