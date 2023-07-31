@@ -20,7 +20,10 @@ jobs:
         run: |
           sudo apt update
       - name: 기존 jdk 삭제
-        run: sudo apt remove openjdk-11-jdk
+        run: |
+          sudo apt-get remove openjdk*
+          sudo apt-get autoremove --purge
+          sudo apt-get autoclean
       - name: 기존 자바 버전 확인
         run: |
           java -version
