@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo ls -al /usr/lib/jvm
       - name: jdk 버전 변경
-        run: update-alternatives --config java
+        run: update-alternatives --display java
 
       - name: JDK 17 설치
         uses: actions/setup-java@v3
