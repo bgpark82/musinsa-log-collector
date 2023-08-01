@@ -1,8 +1,5 @@
 name: Github Actions Demo
 on: [push]
-permissions:
-  id-token: write
-  contents: read
 jobs:
   Explore-Github-Actions:
     runs-on: ubuntu-22.04
