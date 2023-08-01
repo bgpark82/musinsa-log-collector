@@ -64,3 +64,12 @@ jobs:
       # https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-services-s3-commands.html
       - name: Upload to S3
         run: aws s3 cp --region ap-northeast-2 log-collection.tar s3://musinsa-server-build/log-collection-api/test/log-collection.tar
+      - name: action-slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          author_name: Github Action Test # default: 8398a7@action-slack
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+        if: always() # Pick up events even if the job fails or is canceled.
