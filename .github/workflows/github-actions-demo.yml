@@ -65,8 +65,10 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          author_name: Github Action Test # default: 8398a7@action-slack
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+          text: 빌드봇의 한마디
+          author_name: 빌드봇 # default: 8398a7@action-slack
+          mention: here
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
         if: always() # Pick up events even if the job fails or is canceled.
