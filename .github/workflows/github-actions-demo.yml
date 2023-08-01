@@ -20,8 +20,6 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
       # 환경설정
-      - name: ubuntu 업데이트
-        run: sudo apt update
       - name: jdk 17 설치
         uses: actions/setup-java@v3
         with:
