@@ -1,64 +1,76 @@
 name: Github Actions Demo
-on: [push]
+on:
+  push:
+    branches:
+      - dev
 jobs:
   Explore-Github-Actions:
     runs-on: ubuntu-22.04
     steps:
+      - name: 현재 브랜치 확인
+        run: |
+          echo ${{ github.head_ref }}
+          echo ${{ github.base_ref }}
+          echo ${{ github.ref }}
+          echo ${{ github.ref_name }}
+          echo ${{ github.ref_protected }}
+          echo ${{ github.ref_type }}
 
-      # github 코드를 ci 서버로 clone, 브랜치 전환
-      - name: Check out repository code
-        uses: actions/checkout@v3
-
-      # jdk 17 설치, 환경변수 지정
-      - name: Install JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      # kotlin 컴파일러 설치
-      - name: Install Kotlin
-        run: sudo snap install --classic kotlin
-
-      # 빌드
-      - name: Build app
-        run: ./gradlew build
-
-      # 압축
-      - name: Compress tar
-        run: tar -cvf log-collection.tar ./build/libs
-
-      # https://github.com/aws-actions/configure-aws-credentials
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-
-      # https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
-      # https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-services-s3-commands.html
-      - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 log-collection.tar s3://musinsa-server-build/log-collection-api/test/log-collection.tar
-
-      # 슬랙 알림
-      - name: Send result to slack
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: 빌드봇의 한마디
-          author_name: 빌드봇
-          mention: here
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-        if: always() # Pick up events even if the job fails or is canceled.
-
-      # 테스트 실패한 경우, 테스트 결과를 github의 artifact로 저장
-      - name: artifact 저장
-        uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: test_result
-          path: /home/runner/work/musinsa-log-collector/musinsa-log-collector/build/reports
-          retention-days: 1
+#
+#      # github 코드를 ci 서버로 clone, 브랜치 전환
+#      - name: Check out repository code
+#        uses: actions/checkout@v3
+#
+#      # jdk 17 설치, 환경변수 지정
+#      - name: Install JDK 17
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: '17'
+#
+#      # kotlin 컴파일러 설치
+#      - name: Install Kotlin
+#        run: sudo snap install --classic kotlin
+#
+#      # 빌드
+#      - name: Build app
+#        run: ./gradlew build
+#
+#      # 압축
+#      - name: Compress tar
+#        run: tar -cvf log-collection.tar ./build/libs
+#
+#      # https://github.com/aws-actions/configure-aws-credentials
+#      - name: Configure AWS credentials
+#        uses: aws-actions/configure-aws-credentials@v2
+#        with:
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws-region: ap-northeast-2
+#
+#      # https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
+#      # https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-services-s3-commands.html
+#      - name: Upload to S3
+#        run: aws s3 cp --region ap-northeast-2 log-collection.tar s3://musinsa-server-build/log-collection-api/test/log-collection.tar
+#
+#      # 슬랙 알림
+#      - name: Send result to slack
+#        uses: 8398a7/action-slack@v3
+#        with:
+#          status: ${{ job.status }}
+#          text: 빌드봇의 한마디
+#          author_name: 빌드봇
+#          mention: here
+#          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+#        if: always() # Pick up events even if the job fails or is canceled.
+#
+#      # 테스트 실패한 경우, 테스트 결과를 github의 artifact로 저장
+#      - name: artifact 저장
+#        uses: actions/upload-artifact@v3
+#        if: failure()
+#        with:
+#          name: test_result
+#          path: /home/runner/work/musinsa-log-collector/musinsa-log-collector/build/reports
+#          retention-days: 1
