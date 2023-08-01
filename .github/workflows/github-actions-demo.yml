@@ -5,8 +5,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
 
-      - name: Check out repository code
-        uses: actions/checkout@v3
+#      - name: Check out repository code
+#        uses: actions/checkout@v3
 
 
       # 환경설정
