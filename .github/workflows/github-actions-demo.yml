@@ -1,5 +1,8 @@
 name: Github Actions Demo
 on: [push]
+permissions:
+  id-token: write
+  contents: read
 jobs:
   Explore-Github-Actions:
     runs-on: ubuntu-22.04
@@ -58,9 +61,7 @@ jobs:
 #          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
 #          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
-        permissions:
-          id-token: write
-          contents: read
+
       # https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html
       # https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-services-s3-commands.html
       - name: Upload to S3
