@@ -98,6 +98,21 @@ tasks.jar {
 	// https://velog.io/@chappse6/%EC%98%A4%EB%8A%98%EC%9D%98-%EC%98%A4%EB%A5%98-%EA%B8%B0%EB%B3%B8-manifest-%EC%86%8D%EC%84%B1%EC%9D%B4-%EC%97%86%EC%8A%B5%EB%8B%88%EB%8B%A4
 	enabled = false
 
+	when (System.getProperties().getProperty("build_stage")) {
+		// 로컬
+		"local" -> {
+			println("local!")
+		}
+		// 개발
+		"dev" -> {
+			println("dev!")
+		}
+		// 운영
+		else -> {
+			println("prod!")
+		}
+	}
+
 	copy {
 		from("./script/code-deploy")
 		into("./build/libs/script/code-deploy")
