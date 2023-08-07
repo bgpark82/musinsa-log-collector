@@ -41,7 +41,7 @@ jobs:
 
       # kotlin 컴파일러 설치
       - name: Install Kotlin
-        run: sudo snap install --classic kotlin
+        run: sudo snap install --classic kotlin --channel=1.7.10
 
       - name: snap 패키지의 코틀린 버전 확인
         run: |
