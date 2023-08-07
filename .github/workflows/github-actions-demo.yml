@@ -14,6 +14,7 @@ jobs:
         run: echo ${{ runner.os }}
 
       - name: gradle 캐시
+        id: gradle-cache
         uses: actions/cache@v3
         with:
           path: |
@@ -22,7 +23,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties') }}
           restore-keys: ${{ runner.os }}-gradle-
       - name: 캐시 히트 확인
-        run: echo ${{ steps.cache.outputs.cache-hit }}
+        run: echo ${{ steps.gradle-cache.outputs.cache-hit }}
 
       # github 코드를 ci 서버로 clone, 브랜치 전환
       - name: Check out repository code
