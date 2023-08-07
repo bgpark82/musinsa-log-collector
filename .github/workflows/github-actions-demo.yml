@@ -13,9 +13,7 @@ jobs:
       - name: runner의 os 확인
         run: echo ${{ runner.os }}
 
-      - name: snap 패키지의 코틀린 버전 확인
-        run: |
-          sudo snap list
+
 
 #      - name: gradle 캐시
 #        id: gradle-cache
@@ -30,20 +28,24 @@ jobs:
 #      - name: 캐시 히트 확인
 #        run: echo ${{ steps.gradle-cache.outputs.cache-hit }}
 #
-#      # github 코드를 ci 서버로 clone, 브랜치 전환
-#      - name: Check out repository code
-#        uses: actions/checkout@v3
-#
-#      # jdk 17 설치, 환경변수 지정
-#      - name: Install JDK 17
-#        uses: actions/setup-java@v3
-#        with:
-#          distribution: 'temurin'
-#          java-version: '17'
-#
-#      # kotlin 컴파일러 설치
-#      - name: Install Kotlin
-#        run: sudo snap install --classic kotlin
+      # github 코드를 ci 서버로 clone, 브랜치 전환
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # jdk 17 설치, 환경변수 지정
+      - name: Install JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # kotlin 컴파일러 설치
+      - name: Install Kotlin
+        run: sudo snap install --classic kotlin
+
+      - name: snap 패키지의 코틀린 버전 확인
+        run: |
+          sudo snap list
 #
 #      # 빌드
 #      - name: Build app
