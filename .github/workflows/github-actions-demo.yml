@@ -11,7 +11,7 @@ jobs:
         run: |
           echo ${{ github.ref_name }}
       - name: runner의 os 확인
-        run: ${{ runner.os }}
+        run: echo ${{ runner.os }}
 
 #      # github 코드를 ci 서버로 clone, 브랜치 전환
 #      - name: Check out repository code
