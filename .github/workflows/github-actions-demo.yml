@@ -13,16 +13,16 @@ jobs:
       - name: runner의 os 확인
         run: echo ${{ runner.os }}
 
-#      - name: gradle 캐시
-#        uses: actions/cache@v3
-#        with:
-#          path: |
-#            ~/.gradle/caches
-#            ~/.gradle/wrapper
-#          # Linux-gradle-hash
-#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties') }}
-#          # Linux-gradle-
-#          restore-keys: ${{ runner.os }}-gradle-
+      - name: gradle 캐시
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+      - name: 캐시 히트 확인
+        run: echo ${{ steps.cache.outputs.cache-hit }}
 
       # github 코드를 ci 서버로 clone, 브랜치 전환
       - name: Check out repository code
