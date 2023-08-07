@@ -46,6 +46,8 @@ jobs:
       - name: .gradle 확인
         run: |
           ls -al ~/.gradle
+          ls -al ~/.gradle/caches
+          ls -al ~/.gradle/wrapper
 #
 #      # 압축
 #      - name: Compress tar
