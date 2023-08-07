@@ -77,8 +77,8 @@ jobs:
       # https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-services-s3-commands.html
       - name: Upload to S3
         run: |
-          aws s3 cp --region ap-northeast-2 log-collection.tar s3://musinsa-server-build/log-collection-api/test/log-collection.tar
-          aws s3 cp --region ap-northeast-2 log-collection.tar s3://musinsa-server-build/log-collection-api/test/log-collection-${{ env.NOW }}.tar
+          aws s3 cp --region ap-northeast-2 log-collection-${{ github.ref_name }}.tar s3://musinsa-server-build/log-collection-api/test/log-collection.tar
+          aws s3 cp --region ap-northeast-2 log-collection-${{ github.ref_name }}.tar s3://musinsa-server-build/log-collection-api/test/log-collection-${{ env.NOW }}.tar
 
       # 슬랙 알림
       - name: Send result to slack
