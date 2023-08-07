@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: set env
-        run: echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+        run: echo "NOW=$(date)" >> $GITHUB_ENV
 
       - name : view env
         run: echo ${{ env.NOW }}
